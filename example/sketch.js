@@ -1,5 +1,5 @@
 // @ts-nocheck
-const { Scene, Square, Circle, renderScene, ShowCreation } = Manim.default
+const { Scene, Square, Circle, renderScene, ShowCreation } = Manim
 
 class Manimation extends Scene {
   construct() {

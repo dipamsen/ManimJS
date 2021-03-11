@@ -6,4 +6,4 @@ const Manim = {
   Scene, renderScene, Circle, Square, MObject, Animation, ShowCreation
 }
 
-export default Manim
+export = Manim
