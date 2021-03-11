@@ -1,4 +1,3 @@
-// @ts-nocheck
 class MObject {
   constructor(opt = {}) {
     this.fill = opt.fill || null

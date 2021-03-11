@@ -1,4 +1,3 @@
-// @ts-nocheck
 class Scene {
   constructor() {
     this.mobjects = []

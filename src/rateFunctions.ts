@@ -1,4 +1,3 @@
-// @ts-nocheck
 const rateFns = {
   linear(t) {
     return t

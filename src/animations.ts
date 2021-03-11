@@ -1,4 +1,3 @@
-// @ts-nocheck
 class ShowCreation {
   constructor(obj) {
     this.obj = obj

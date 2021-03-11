@@ -6,11 +6,16 @@
 
 Currently in progress
 
-## FAQ
+<!-- ## FAQ
 
 ### Does this Work?
 
-Probably not.
+Probably not. -->
+
+## TODO
+
+- [ ] Add GitHub Action to Build on push and create release
+- [ ] Implement Stuff
 
 ## Contributing
 
