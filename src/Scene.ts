@@ -28,7 +28,7 @@ export default class Scene {
 
 export function renderScene(UserScene: typeof Scene) {
   const s = new UserScene()
-  s.p5 = new p5(p => {
+  s.p5 = new p5((p: p5) => {
     p.setup = () => {
       p.createCanvas(400, 400)
       p.noFill()
@@ -53,6 +53,7 @@ export function renderScene(UserScene: typeof Scene) {
       if (p.frameCount >= s.totalDuration) {
         p.noLoop()
         p.print("completed")
+        p.remove()
       }
     }
   })
