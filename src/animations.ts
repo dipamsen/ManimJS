@@ -1,10 +1,19 @@
-class ShowCreation {
-  constructor(obj) {
+import { MObject } from "./mobjects"
+import { RateFunction, smooth } from "./rateFunctions"
+export abstract class Animation {
+  obj: MObject
+  rateFunc: RateFunction
+  duration: number
+  constructor(obj: MObject) {
     this.obj = obj
-    this.rateFnc = rateFns.smooth
+    this.rateFunc = smooth
     this.duration = 60
   }
-  animate(frame) {
-    this.obj.drawPartial(rateFns.smooth(frame / this.duration))
+  abstract animate(frame: number): void
+}
+
+export class ShowCreation extends Animation {
+  animate(frame: number) {
+    this.obj.drawPartial(this.rateFunc(frame / this.duration))
   }
 }

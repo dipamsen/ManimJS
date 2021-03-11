@@ -1,6 +1,7 @@
 // @ts-nocheck
+const { Scene, Square, Circle, renderScene, ShowCreation } = Manim.default
 
-class Manim extends Scene {
+class Manimation extends Scene {
   construct() {
     const sq = new Square()
     const c2 = new Circle(-40, 80, 50, {
@@ -12,4 +13,4 @@ class Manim extends Scene {
   }
 }
 
-renderScene(Manim)
+renderScene(Manimation)
