@@ -1,6 +1,9 @@
+// <reference path="./extends.d.ts" />
+
 import { MObject } from "./mobjects"
 import { Animation } from "./animations"
-import * as p5 from "p5"
+import p5 from "p5"
+import { UNIT } from "./constants"
 export default class Scene {
   mobjects: MObject[]
   animations: Animation[]
@@ -10,11 +13,11 @@ export default class Scene {
     this.animations = []
   }
   add(mobject: MObject) {
-    mobject.p5 = this.p5
+    mobject.p5 = this.p5.graphics
     this.mobjects.push(mobject)
   }
   play(animation: Animation) {
-    animation.obj.p5 = this.p5
+    animation.obj.p5 = this.p5.graphics
     this.animations.push(animation)
   }
   construct() {
@@ -25,21 +28,27 @@ export default class Scene {
   }
 }
 
-
 export function renderScene(UserScene: typeof Scene) {
   const s = new UserScene()
   s.p5 = new p5((p: p5) => {
+    let g = p.createGraphics(1280, 720)
+    g.strokeWeight_ = (val) => {
+      g.strokeWeight(val / UNIT)
+      return g
+    }
+    p.graphics = g
     p.setup = () => {
-      p.createCanvas(400, 400)
-      p.noFill()
-      p.noStroke()
-      p.rectMode(p.CENTER)
+      p.createCanvas(800, 450)
+      g.noFill()
+      g.noStroke()
+      g.rectMode(p.CENTER)
     }
     p.draw = () => {
-      p.translate(p.width / 2, p.height / 2)
-      p.scale(1, -1)
-      p.background(0)
-      s.mobjects.forEach(x => x.draw())
+      g.push()
+      g.translate(g.width / 2, g.height / 2)
+      g.scale(UNIT, -UNIT)
+      g.background(0)
+      s.mobjects.forEach(x => x.drawOnCanvas())
       for (let i = 0; i < s.animations.length; i++) {
         let prev
         if (i == 0) prev = 0
@@ -50,10 +59,12 @@ export function renderScene(UserScene: typeof Scene) {
           if (frame == s.animations[i].duration) s.mobjects.push(s.animations[i].obj)
         }
       }
+      g.pop()
+      p.image(g, 0, 0, p.width, p.height)
       if (p.frameCount >= s.totalDuration) {
         p.noLoop()
         p.print("completed")
-        p.remove()
+        // p.remove()
       }
     }
   })

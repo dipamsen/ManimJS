@@ -14,6 +14,6 @@ export abstract class Animation {
 
 export class ShowCreation extends Animation {
   animate(frame: number) {
-    this.obj.drawPartial(this.rateFunc(frame / this.duration))
+    this.obj.drawOnCanvas(this.rateFunc(frame / this.duration))
   }
 }

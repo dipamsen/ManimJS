@@ -1,15 +1,13 @@
 // @ts-nocheck
-const { Scene, Square, Circle, renderScene, ShowCreation } = Manim
+const { Scene, Square, Circle, Polygon, renderScene, ShowCreation, Colors: C } = Manim
 
 class Manimation extends Scene {
   construct() {
-    const sq = new Square()
-    const c2 = new Circle(-40, 80, 50, {
-      fill: "green",
-      stroke: "white"
-    })
-    this.add(sq)
-    this.play(new ShowCreation(c2))
+    const c2 = new Circle()
+
+    this.add(new Polygon([[0, 0, 0], [1, 0, 0], [1, 1, 0]]))
+
+    // this.play(new ShowCreation(c2))
   }
 }
 
